@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://unpkg.com/@tensorflow/tfjs"></script>
+  <script src="https://unpkg.com/@tensorflow-models/posenet"></script>
+</head>
+<body>
+  <img id="cat" src="./images/cat.jpg">
+
+  <script>
+    const imageScaleFactor = 0.5
+    const outputStride = 16
+    const flipHorizontal = false
+
+    const imageElement = document.getElementById('cat')
+
+    posenet.load().then((net) => {
+      return net.estimateSinglePose(imageElement, imageScaleFactor, flipHorizontal, outputStride)
+    }).then((pose) => {
+      console.log(pose)
+    })
+  </script>
+</body>
+</html>
